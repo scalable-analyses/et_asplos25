@@ -1,0 +1,6900 @@
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0128422
+  time (eval):    0.0111702
+  gflops (eval):  2987.7
+  gflops (total): 1389.83
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0128422,0.0111702,2987.7,1389.83
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0563139
+  gflops (total): 592.628
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,592.628
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0312693
+  gflops (eval):  1067.28
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0312693,1067.28,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      62271.3
+  maximum absolute entry in einsum_ir solution: 62271.3
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131998
+  time (eval):    0.0111277
+  gflops (eval):  2999.12
+  gflops (total): 1371.83
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131998,0.0111277,2999.12,1371.83
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570278
+  gflops (total): 585.21
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,585.21
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0309978
+  gflops (eval):  1076.63
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0309978,1076.63,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54172.2
+  maximum absolute entry in einsum_ir solution: 54172.2
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131988
+  time (eval):    0.0110585
+  gflops (eval):  3017.88
+  gflops (total): 1375.8
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131988,0.0110585,3017.88,1375.8
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.058692
+  gflops (total): 568.616
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,568.616
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.035862
+  gflops (eval):  930.601
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.035862,930.601,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54993
+  maximum absolute entry in einsum_ir solution: 54993
+  maximum element-wise difference:              0.0336914
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132177
+  time (eval):    0.0112835
+  gflops (eval):  2957.69
+  gflops (total): 1362.1
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132177,0.0112835,2957.69,1362.1
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574755
+  gflops (total): 580.651
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.651
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0320895
+  gflops (eval):  1040.01
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0320895,1040.01,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      61668.2
+  maximum absolute entry in einsum_ir solution: 61668.2
+  maximum element-wise difference:              0.0327148
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131471
+  time (eval):    0.0111426
+  gflops (eval):  2995.11
+  gflops (total): 1373.97
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131471,0.0111426,2995.11,1373.97
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570079
+  gflops (total): 585.414
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,585.414
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031751
+  gflops (eval):  1051.09
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031751,1051.09,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58460.1
+  maximum absolute entry in einsum_ir solution: 58460.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131454
+  time (eval):    0.0110513
+  gflops (eval):  3019.85
+  gflops (total): 1379.25
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131454,0.0110513,3019.85,1379.25
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0578428
+  gflops (total): 576.964
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,576.964
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0360498
+  gflops (eval):  925.754
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0360498,925.754,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55082.8
+  maximum absolute entry in einsum_ir solution: 55082.8
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0129218
+  time (eval):    0.0111286
+  gflops (eval):  2998.86
+  gflops (total): 1387.64
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0129218,0.0111286,2998.86,1387.64
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574809
+  gflops (total): 580.597
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.597
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314839
+  gflops (eval):  1060.01
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314839,1060.01,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60075.6
+  maximum absolute entry in einsum_ir solution: 60075.6
+  maximum element-wise difference:              0.0317383
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132187
+  time (eval):    0.0111865
+  gflops (eval):  2983.34
+  gflops (total): 1367.46
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132187,0.0111865,2983.34,1367.46
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0571348
+  gflops (total): 584.114
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.114
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0318163
+  gflops (eval):  1048.93
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0318163,1048.93,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54827.7
+  maximum absolute entry in einsum_ir solution: 54827.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133049
+  time (eval):    0.0112348
+  gflops (eval):  2970.54
+  gflops (total): 1359.97
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133049,0.0112348,2970.54,1359.97
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0571942
+  gflops (total): 583.507
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,583.507
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.032141
+  gflops (eval):  1038.34
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.032141,1038.34,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56928.3
+  maximum absolute entry in einsum_ir solution: 56928.3
+  maximum element-wise difference:              0.0317383
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131455
+  time (eval):    0.0112505
+  gflops (eval):  2966.39
+  gflops (total): 1367.98
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131455,0.0112505,2966.39,1367.98
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0562633
+  gflops (total): 593.161
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,593.161
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0318051
+  gflops (eval):  1049.31
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0318051,1049.31,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55354.3
+  maximum absolute entry in einsum_ir solution: 55354.3
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0134247
+  time (eval):    0.0112336
+  gflops (eval):  2970.85
+  gflops (total): 1353.43
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0134247,0.0112336,2970.85,1353.43
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566697
+  gflops (total): 588.908
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,588.908
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317771
+  gflops (eval):  1050.23
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317771,1050.23,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54584.6
+  maximum absolute entry in einsum_ir solution: 54584.6
+  maximum element-wise difference:              0.0336914
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013081
+  time (eval):    0.0112558
+  gflops (eval):  2964.99
+  gflops (total): 1371.31
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013081,0.0112558,2964.99,1371.31
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.056681
+  gflops (total): 588.791
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,588.791
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313927
+  gflops (eval):  1063.09
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313927,1063.09,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59405.9
+  maximum absolute entry in einsum_ir solution: 59405.9
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130627
+  time (eval):    0.0112176
+  gflops (eval):  2975.09
+  gflops (total): 1374.5
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130627,0.0112176,2975.09,1374.5
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575582
+  gflops (total): 579.817
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.817
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0355542
+  gflops (eval):  938.657
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0355542,938.657,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      53136.9
+  maximum absolute entry in einsum_ir solution: 53136.9
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131358
+  time (eval):    0.0112108
+  gflops (eval):  2976.87
+  gflops (total): 1370.75
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131358,0.0112108,2976.87,1370.75
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.05654
+  gflops (total): 590.259
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,590.259
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313232
+  gflops (eval):  1065.45
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313232,1065.45,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58823.5
+  maximum absolute entry in einsum_ir solution: 58823.5
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132838
+  time (eval):    0.0110328
+  gflops (eval):  3024.92
+  gflops (total): 1372.45
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132838,0.0110328,3024.92,1372.45
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574702
+  gflops (total): 580.705
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.705
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031125
+  gflops (eval):  1072.23
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031125,1072.23,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      66458.1
+  maximum absolute entry in einsum_ir solution: 66458.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133712
+  time (eval):    0.0109882
+  gflops (eval):  3037.19
+  gflops (total): 1370.04
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133712,0.0109882,3037.19,1370.04
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.057833
+  gflops (total): 577.062
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,577.062
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311795
+  gflops (eval):  1070.36
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311795,1070.36,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54385.2
+  maximum absolute entry in einsum_ir solution: 54385.2
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131332
+  time (eval):    0.011051
+  gflops (eval):  3019.92
+  gflops (total): 1379.96
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131332,0.011051,3019.92,1379.96
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0567753
+  gflops (total): 587.813
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,587.813
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0306352
+  gflops (eval):  1089.38
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0306352,1089.38,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60287.3
+  maximum absolute entry in einsum_ir solution: 60287.3
+  maximum element-wise difference:              0.0380859
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131297
+  time (eval):    0.0112656
+  gflops (eval):  2962.4
+  gflops (total): 1368.02
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131297,0.0112656,2962.4,1368.02
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0577718
+  gflops (total): 577.674
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,577.674
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0318607
+  gflops (eval):  1047.47
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0318607,1047.47,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58499.1
+  maximum absolute entry in einsum_ir solution: 58499.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131988
+  time (eval):    0.011261
+  gflops (eval):  2963.62
+  gflops (total): 1364.42
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131988,0.011261,2963.62,1364.42
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579764
+  gflops (total): 575.635
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.635
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0354383
+  gflops (eval):  941.728
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0354383,941.728,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54285.5
+  maximum absolute entry in einsum_ir solution: 54285.5
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133225
+  time (eval):    0.0112624
+  gflops (eval):  2963.23
+  gflops (total): 1357.46
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133225,0.0112624,2963.23,1357.46
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0580225
+  gflops (total): 575.178
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.178
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.035426
+  gflops (eval):  942.055
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.035426,942.055,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57279.8
+  maximum absolute entry in einsum_ir solution: 57279.8
+  maximum element-wise difference:              0.0361328
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132476
+  time (eval):    0.0112739
+  gflops (eval):  2960.23
+  gflops (total): 1360.98
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132476,0.0112739,2960.23,1360.98
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570661
+  gflops (total): 584.817
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.817
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0310874
+  gflops (eval):  1073.53
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0310874,1073.53,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54664
+  maximum absolute entry in einsum_ir solution: 54664
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132577
+  time (eval):    0.0112093
+  gflops (eval):  2977.28
+  gflops (total): 1364.01
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132577,0.0112093,2977.28,1364.01
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0582993
+  gflops (total): 572.446
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,572.446
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0320027
+  gflops (eval):  1042.83
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0320027,1042.83,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60398.6
+  maximum absolute entry in einsum_ir solution: 60398.6
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132015
+  time (eval):    0.0112868
+  gflops (eval):  2956.84
+  gflops (total): 1362.82
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132015,0.0112868,2956.84,1362.82
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579172
+  gflops (total): 576.223
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,576.223
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314834
+  gflops (eval):  1060.03
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314834,1060.03,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57255.1
+  maximum absolute entry in einsum_ir solution: 57255.1
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132976
+  time (eval):    0.0112454
+  gflops (eval):  2967.72
+  gflops (total): 1359.79
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132976,0.0112454,2967.72,1359.79
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574658
+  gflops (total): 580.75
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.75
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311193
+  gflops (eval):  1072.43
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311193,1072.43,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55950
+  maximum absolute entry in einsum_ir solution: 55950
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130854
+  time (eval):    0.0112372
+  gflops (eval):  2969.88
+  gflops (total): 1372.11
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130854,0.0112372,2969.88,1372.11
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576246
+  gflops (total): 579.149
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.149
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314317
+  gflops (eval):  1061.77
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314317,1061.77,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56749
+  maximum absolute entry in einsum_ir solution: 56749
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130388
+  time (eval):    0.0112754
+  gflops (eval):  2959.82
+  gflops (total): 1372.58
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130388,0.0112754,2959.82,1372.58
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0580823
+  gflops (total): 574.585
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,574.585
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317971
+  gflops (eval):  1049.57
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317971,1049.57,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55196.7
+  maximum absolute entry in einsum_ir solution: 55196.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132383
+  time (eval):    0.011189
+  gflops (eval):  2982.68
+  gflops (total): 1366.23
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132383,0.011189,2982.68,1366.23
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0572092
+  gflops (total): 583.354
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,583.354
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0308514
+  gflops (eval):  1081.74
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0308514,1081.74,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56019.9
+  maximum absolute entry in einsum_ir solution: 56019.9
+  maximum element-wise difference:              0.0314941
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013153
+  time (eval):    0.0110571
+  gflops (eval):  3018.27
+  gflops (total): 1378.49
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013153,0.0110571,3018.27,1378.49
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576908
+  gflops (total): 578.485
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,578.485
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0312483
+  gflops (eval):  1068
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0312483,1068,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60666.9
+  maximum absolute entry in einsum_ir solution: 60666.9
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131998
+  time (eval):    0.0112896
+  gflops (eval):  2956.11
+  gflops (total): 1362.76
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131998,0.0112896,2956.11,1362.76
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0585396
+  gflops (total): 570.097
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,570.097
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0358771
+  gflops (eval):  930.211
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0358771,930.211,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55780.2
+  maximum absolute entry in einsum_ir solution: 55780.2
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0129359
+  time (eval):    0.0112385
+  gflops (eval):  2969.54
+  gflops (total): 1380.52
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0129359,0.0112385,2969.54,1380.52
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0564394
+  gflops (total): 591.311
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,591.311
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0321349
+  gflops (eval):  1038.54
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0321349,1038.54,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55240.4
+  maximum absolute entry in einsum_ir solution: 55240.4
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131009
+  time (eval):    0.0111741
+  gflops (eval):  2986.67
+  gflops (total): 1374.8
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131009,0.0111741,2986.67,1374.8
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566922
+  gflops (total): 588.675
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,588.675
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311166
+  gflops (eval):  1072.52
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311166,1072.52,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56779.2
+  maximum absolute entry in einsum_ir solution: 56779.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132681
+  time (eval):    0.011237
+  gflops (eval):  2969.94
+  gflops (total): 1361.89
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132681,0.011237,2969.94,1361.89
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574797
+  gflops (total): 580.609
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.609
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031798
+  gflops (eval):  1049.54
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031798,1049.54,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57335.2
+  maximum absolute entry in einsum_ir solution: 57335.2
+  maximum element-wise difference:              0.0322266
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013414
+  time (eval):    0.0111524
+  gflops (eval):  2992.48
+  gflops (total): 1358.49
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013414,0.0111524,2992.48,1358.49
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0573098
+  gflops (total): 582.33
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,582.33
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0310514
+  gflops (eval):  1074.77
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0310514,1074.77,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59829.6
+  maximum absolute entry in einsum_ir solution: 59829.6
+  maximum element-wise difference:              0.034668
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132588
+  time (eval):    0.0113809
+  gflops (eval):  2932.38
+  gflops (total): 1354.45
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132588,0.0113809,2932.38,1354.45
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575472
+  gflops (total): 579.928
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.928
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314114
+  gflops (eval):  1062.46
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314114,1062.46,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56310.7
+  maximum absolute entry in einsum_ir solution: 56310.7
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131739
+  time (eval):    0.0113043
+  gflops (eval):  2952.25
+  gflops (total): 1363.38
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131739,0.0113043,2952.25,1363.38
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570755
+  gflops (total): 584.721
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.721
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031725
+  gflops (eval):  1051.96
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031725,1051.96,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56098.4
+  maximum absolute entry in einsum_ir solution: 56098.4
+  maximum element-wise difference:              0.0322266
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130911
+  time (eval):    0.0112004
+  gflops (eval):  2979.66
+  gflops (total): 1373.87
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130911,0.0112004,2979.66,1373.87
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579657
+  gflops (total): 575.741
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.741
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0356934
+  gflops (eval):  934.997
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0356934,934.997,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57955.4
+  maximum absolute entry in einsum_ir solution: 57955.4
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131795
+  time (eval):    0.01115
+  gflops (eval):  2993.13
+  gflops (total): 1371.72
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131795,0.01115,2993.13,1371.72
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0581937
+  gflops (total): 573.485
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,573.485
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0308662
+  gflops (eval):  1081.22
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0308662,1081.22,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55142.9
+  maximum absolute entry in einsum_ir solution: 55142.8
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131625
+  time (eval):    0.011207
+  gflops (eval):  2977.9
+  gflops (total): 1369.47
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131625,0.011207,2977.9,1369.47
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576405
+  gflops (total): 578.989
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,578.989
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0315243
+  gflops (eval):  1058.65
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0315243,1058.65,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57788.1
+  maximum absolute entry in einsum_ir solution: 57788.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0134117
+  time (eval):    0.0113259
+  gflops (eval):  2946.62
+  gflops (total): 1349.09
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0134117,0.0113259,2946.62,1349.09
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0561684
+  gflops (total): 594.163
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,594.163
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0315902
+  gflops (eval):  1056.44
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0315902,1056.44,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60792.7
+  maximum absolute entry in einsum_ir solution: 60792.7
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133956
+  time (eval):    0.0109192
+  gflops (eval):  3056.38
+  gflops (total): 1372.55
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133956,0.0109192,3056.38,1372.55
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0587563
+  gflops (total): 567.994
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,567.994
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0358546
+  gflops (eval):  930.793
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0358546,930.793,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57639.5
+  maximum absolute entry in einsum_ir solution: 57639.5
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0129321
+  time (eval):    0.0111721
+  gflops (eval):  2987.21
+  gflops (total): 1384.54
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0129321,0.0111721,2987.21,1384.54
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0577793
+  gflops (total): 577.598
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,577.598
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311627
+  gflops (eval):  1070.94
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311627,1070.94,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55909.3
+  maximum absolute entry in einsum_ir solution: 55909.3
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131402
+  time (eval):    0.0111776
+  gflops (eval):  2985.74
+  gflops (total): 1372.38
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131402,0.0111776,2985.74,1372.38
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0582862
+  gflops (total): 572.575
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,572.575
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0359693
+  gflops (eval):  927.825
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0359693,927.825,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54411.9
+  maximum absolute entry in einsum_ir solution: 54411.9
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130994
+  time (eval):    0.0112111
+  gflops (eval):  2976.79
+  gflops (total): 1372.79
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130994,0.0112111,2976.79,1372.79
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579313
+  gflops (total): 576.083
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,576.083
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0357795
+  gflops (eval):  932.747
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0357795,932.747,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59352
+  maximum absolute entry in einsum_ir solution: 59352
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132059
+  time (eval):    0.0112813
+  gflops (eval):  2958.28
+  gflops (total): 1362.89
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132059,0.0112813,2958.28,1362.89
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.058766
+  gflops (total): 567.9
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,567.9
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0361591
+  gflops (eval):  922.955
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0361591,922.955,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56035.9
+  maximum absolute entry in einsum_ir solution: 56035.9
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131719
+  time (eval):    0.0111349
+  gflops (eval):  2997.17
+  gflops (total): 1373
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131719,0.0111349,2997.17,1373
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0568914
+  gflops (total): 586.613
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,586.613
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0316201
+  gflops (eval):  1055.44
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0316201,1055.44,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56646.8
+  maximum absolute entry in einsum_ir solution: 56646.8
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132441
+  time (eval):    0.0110099
+  gflops (eval):  3031.2
+  gflops (total): 1375.99
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132441,0.0110099,3031.2,1375.99
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579842
+  gflops (total): 575.557
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.557
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0312566
+  gflops (eval):  1067.72
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0312566,1067.72,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59462.5
+  maximum absolute entry in einsum_ir solution: 59462.5
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132223
+  time (eval):    0.0112742
+  gflops (eval):  2960.13
+  gflops (total): 1362.37
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132223,0.0112742,2960.13,1362.37
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.060672
+  gflops (total): 550.06
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,550.06
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0362537
+  gflops (eval):  920.547
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0362537,920.547,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59942
+  maximum absolute entry in einsum_ir solution: 59942
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131745
+  time (eval):    0.0111787
+  gflops (eval):  2985.42
+  gflops (total): 1370.38
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131745,0.0111787,2985.42,1370.38
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0569237
+  gflops (total): 586.28
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,586.28
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0303
+  gflops (eval):  1101.43
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0303,1101.43,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56843.5
+  maximum absolute entry in einsum_ir solution: 56843.5
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0129544
+  time (eval):    0.0112801
+  gflops (eval):  2958.59
+  gflops (total): 1377.1
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0129544,0.0112801,2958.59,1377.1
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0558967
+  gflops (total): 597.052
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,597.052
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0312475
+  gflops (eval):  1068.03
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0312475,1068.03,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56224.8
+  maximum absolute entry in einsum_ir solution: 56224.8
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130902
+  time (eval):    0.0110516
+  gflops (eval):  3019.76
+  gflops (total): 1382.39
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130902,0.0110516,3019.76,1382.39
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0562315
+  gflops (total): 593.498
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,593.498
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031008
+  gflops (eval):  1076.28
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031008,1076.28,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      52348.6
+  maximum absolute entry in einsum_ir solution: 52348.6
+  maximum element-wise difference:              0.0322266
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130925
+  time (eval):    0.0111308
+  gflops (eval):  2998.29
+  gflops (total): 1377.73
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130925,0.0111308,2998.29,1377.73
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579919
+  gflops (total): 575.481
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.481
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0353294
+  gflops (eval):  944.631
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0353294,944.631,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56758.6
+  maximum absolute entry in einsum_ir solution: 56758.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131582
+  time (eval):    0.0112729
+  gflops (eval):  2960.49
+  gflops (total): 1366.01
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131582,0.0112729,2960.49,1366.01
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0563291
+  gflops (total): 592.469
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,592.469
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313468
+  gflops (eval):  1064.65
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313468,1064.65,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57792.5
+  maximum absolute entry in einsum_ir solution: 57792.4
+  maximum element-wise difference:              0.0380859
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013228
+  time (eval):    0.0111972
+  gflops (eval):  2980.49
+  gflops (total): 1366.34
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013228,0.0111972,2980.49,1366.34
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0561982
+  gflops (total): 593.849
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,593.849
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031847
+  gflops (eval):  1047.92
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031847,1047.92,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55421.3
+  maximum absolute entry in einsum_ir solution: 55421.3
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131004
+  time (eval):    0.0112597
+  gflops (eval):  2963.96
+  gflops (total): 1370
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131004,0.0112597,2963.96,1370
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0588016
+  gflops (total): 567.556
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,567.556
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0350274
+  gflops (eval):  952.775
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0350274,952.775,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55898.4
+  maximum absolute entry in einsum_ir solution: 55898.4
+  maximum element-wise difference:              0.0322266
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133103
+  time (eval):    0.0112722
+  gflops (eval):  2960.68
+  gflops (total): 1357.6
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133103,0.0112722,2960.68,1357.6
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.05866
+  gflops (total): 568.927
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,568.927
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0318269
+  gflops (eval):  1048.58
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0318269,1048.58,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58152.1
+  maximum absolute entry in einsum_ir solution: 58152.1
+  maximum element-wise difference:              0.036377
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013158
+  time (eval):    0.0111616
+  gflops (eval):  2989.99
+  gflops (total): 1372.27
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013158,0.0111616,2989.99,1372.27
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0567917
+  gflops (total): 587.643
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,587.643
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0316654
+  gflops (eval):  1053.93
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0316654,1053.93,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54019.3
+  maximum absolute entry in einsum_ir solution: 54019.3
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132385
+  time (eval):    0.0113279
+  gflops (eval):  2946.12
+  gflops (total): 1358.49
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132385,0.0113279,2946.12,1358.49
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566602
+  gflops (total): 589.006
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,589.006
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317359
+  gflops (eval):  1051.59
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317359,1051.59,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      69738.7
+  maximum absolute entry in einsum_ir solution: 69738.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133818
+  time (eval):    0.0111502
+  gflops (eval):  2993.06
+  gflops (total): 1360.39
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133818,0.0111502,2993.06,1360.39
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.058419
+  gflops (total): 571.273
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,571.273
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0339979
+  gflops (eval):  981.626
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0339979,981.626,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      64324
+  maximum absolute entry in einsum_ir solution: 64324
+  maximum element-wise difference:              0.0341797
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130655
+  time (eval):    0.0112481
+  gflops (eval):  2967
+  gflops (total): 1372.61
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130655,0.0112481,2967,1372.61
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0580355
+  gflops (total): 575.049
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.049
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313741
+  gflops (eval):  1063.72
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313741,1063.72,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56635.5
+  maximum absolute entry in einsum_ir solution: 56635.5
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0134159
+  time (eval):    0.0110778
+  gflops (eval):  3012.63
+  gflops (total): 1362.52
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0134159,0.0110778,3012.63,1362.52
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.057606
+  gflops (total): 579.336
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.336
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0316604
+  gflops (eval):  1054.1
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0316604,1054.1,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55928.3
+  maximum absolute entry in einsum_ir solution: 55928.3
+  maximum element-wise difference:              0.034668
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131502
+  time (eval):    0.0113444
+  gflops (eval):  2941.83
+  gflops (total): 1362.48
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131502,0.0113444,2941.83,1362.48
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579973
+  gflops (total): 575.427
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.427
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031338
+  gflops (eval):  1064.95
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031338,1064.95,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      61764.4
+  maximum absolute entry in einsum_ir solution: 61764.4
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130559
+  time (eval):    0.0112396
+  gflops (eval):  2969.25
+  gflops (total): 1373.64
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130559,0.0112396,2969.25,1373.64
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.058674
+  gflops (total): 568.791
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,568.791
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314067
+  gflops (eval):  1062.61
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314067,1062.61,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55958.7
+  maximum absolute entry in einsum_ir solution: 55958.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013213
+  time (eval):    0.0111416
+  gflops (eval):  2995.37
+  gflops (total): 1370.3
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013213,0.0111416,2995.37,1370.3
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0586533
+  gflops (total): 568.992
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,568.992
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0357298
+  gflops (eval):  934.045
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0357298,934.045,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57582.5
+  maximum absolute entry in einsum_ir solution: 57582.5
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131565
+  time (eval):    0.0112505
+  gflops (eval):  2966.38
+  gflops (total): 1367.36
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131565,0.0112505,2966.38,1367.36
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566196
+  gflops (total): 589.429
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,589.429
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0320859
+  gflops (eval):  1040.12
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0320859,1040.12,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57256.2
+  maximum absolute entry in einsum_ir solution: 57256.2
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132518
+  time (eval):    0.0112552
+  gflops (eval):  2965.13
+  gflops (total): 1361.78
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132518,0.0112552,2965.13,1361.78
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0567556
+  gflops (total): 588.017
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,588.017
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0348938
+  gflops (eval):  956.423
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0348938,956.423,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60288.4
+  maximum absolute entry in einsum_ir solution: 60288.4
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132662
+  time (eval):    0.0111505
+  gflops (eval):  2992.99
+  gflops (total): 1366.82
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132662,0.0111505,2992.99,1366.82
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0580512
+  gflops (total): 574.893
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,574.893
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317448
+  gflops (eval):  1051.3
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317448,1051.3,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55829.9
+  maximum absolute entry in einsum_ir solution: 55829.9
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131849
+  time (eval):    0.011231
+  gflops (eval):  2971.53
+  gflops (total): 1366.86
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131849,0.011231,2971.53,1366.86
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0589326
+  gflops (total): 566.295
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,566.295
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0355087
+  gflops (eval):  939.861
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0355087,939.861,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60827.8
+  maximum absolute entry in einsum_ir solution: 60827.8
+  maximum element-wise difference:              0.0341797
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130853
+  time (eval):    0.0113623
+  gflops (eval):  2937.19
+  gflops (total): 1365.09
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130853,0.0113623,2937.19,1365.09
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0578475
+  gflops (total): 576.918
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,576.918
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0314108
+  gflops (eval):  1062.48
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0314108,1062.48,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57542.7
+  maximum absolute entry in einsum_ir solution: 57542.6
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132293
+  time (eval):    0.0112255
+  gflops (eval):  2972.99
+  gflops (total): 1364.69
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132293,0.0112255,2972.99,1364.69
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0592125
+  gflops (total): 563.618
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,563.618
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.035598
+  gflops (eval):  937.502
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.035598,937.502,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57042.7
+  maximum absolute entry in einsum_ir solution: 57042.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133311
+  time (eval):    0.0112365
+  gflops (eval):  2970.08
+  gflops (total): 1358.43
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133311,0.0112365,2970.08,1358.43
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575649
+  gflops (total): 579.75
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.75
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317226
+  gflops (eval):  1052.03
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317226,1052.03,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54610.2
+  maximum absolute entry in einsum_ir solution: 54610.2
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0129481
+  time (eval):    0.0112832
+  gflops (eval):  2957.79
+  gflops (total): 1377.28
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0129481,0.0112832,2957.79,1377.28
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0583848
+  gflops (total): 571.608
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,571.608
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0365784
+  gflops (eval):  912.376
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0365784,912.376,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56174.9
+  maximum absolute entry in einsum_ir solution: 56174.9
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132326
+  time (eval):    0.011238
+  gflops (eval):  2969.67
+  gflops (total): 1363.81
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132326,0.011238,2969.67,1363.81
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0577718
+  gflops (total): 577.674
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,577.674
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0308638
+  gflops (eval):  1081.31
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0308638,1081.31,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54540.7
+  maximum absolute entry in einsum_ir solution: 54540.7
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013229
+  time (eval):    0.0113079
+  gflops (eval):  2951.32
+  gflops (total): 1360.12
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013229,0.0113079,2951.32,1360.12
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.057073
+  gflops (total): 584.747
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.747
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311452
+  gflops (eval):  1071.54
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311452,1071.54,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56503.5
+  maximum absolute entry in einsum_ir solution: 56503.5
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130165
+  time (eval):    0.0111799
+  gflops (eval):  2985.11
+  gflops (total): 1379.27
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130165,0.0111799,2985.11,1379.27
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0583117
+  gflops (total): 572.324
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,572.324
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0315477
+  gflops (eval):  1057.87
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0315477,1057.87,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58548.1
+  maximum absolute entry in einsum_ir solution: 58548.1
+  maximum element-wise difference:              0.0390625
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013133
+  time (eval):    0.0112947
+  gflops (eval):  2954.77
+  gflops (total): 1366.21
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013133,0.0112947,2954.77,1366.21
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0586444
+  gflops (total): 569.078
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,569.078
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0360022
+  gflops (eval):  926.977
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0360022,926.977,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54981
+  maximum absolute entry in einsum_ir solution: 54981
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131861
+  time (eval):    0.0109673
+  gflops (eval):  3042.97
+  gflops (total): 1381.72
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131861,0.0109673,3042.97,1381.72
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575938
+  gflops (total): 579.459
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.459
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0355839
+  gflops (eval):  937.876
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0355839,937.876,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56358.5
+  maximum absolute entry in einsum_ir solution: 56358.5
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132819
+  time (eval):    0.0111944
+  gflops (eval):  2981.25
+  gflops (total): 1363.49
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132819,0.0111944,2981.25,1363.49
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570792
+  gflops (total): 584.683
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.683
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0315553
+  gflops (eval):  1057.61
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0315553,1057.61,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59305.5
+  maximum absolute entry in einsum_ir solution: 59305.5
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0134631
+  time (eval):    0.0112407
+  gflops (eval):  2968.97
+  gflops (total): 1350.94
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0134631,0.0112407,2968.97,1350.94
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576984
+  gflops (total): 578.408
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,578.408
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0356822
+  gflops (eval):  935.291
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0356822,935.291,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      52113.9
+  maximum absolute entry in einsum_ir solution: 52113.9
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131608
+  time (eval):    0.0112008
+  gflops (eval):  2979.54
+  gflops (total): 1369.91
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131608,0.0112008,2979.54,1369.91
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0585834
+  gflops (total): 569.671
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,569.671
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317414
+  gflops (eval):  1051.41
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317414,1051.41,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56028.3
+  maximum absolute entry in einsum_ir solution: 56028.3
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132401
+  time (eval):    0.0110913
+  gflops (eval):  3008.95
+  gflops (total): 1371.61
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132401,0.0110913,3008.95,1371.61
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.057959
+  gflops (total): 575.808
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.808
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311533
+  gflops (eval):  1071.26
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311533,1071.26,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57042.9
+  maximum absolute entry in einsum_ir solution: 57042.8
+  maximum element-wise difference:              0.0390625
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013148
+  time (eval):    0.0112417
+  gflops (eval):  2968.7
+  gflops (total): 1368.34
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013148,0.0112417,2968.7,1368.34
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0570736
+  gflops (total): 584.74
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,584.74
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0316929
+  gflops (eval):  1053.02
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0316929,1053.02,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55158.6
+  maximum absolute entry in einsum_ir solution: 55158.6
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132497
+  time (eval):    0.0113061
+  gflops (eval):  2951.78
+  gflops (total): 1359.07
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132497,0.0113061,2951.78,1359.07
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0579785
+  gflops (total): 575.614
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,575.614
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0355401
+  gflops (eval):  939.03
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0355401,939.03,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      60450.5
+  maximum absolute entry in einsum_ir solution: 60450.5
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131414
+  time (eval):    0.0109678
+  gflops (eval):  3042.84
+  gflops (total): 1384.25
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131414,0.0109678,3042.84,1384.25
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0581622
+  gflops (total): 573.796
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,573.796
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0352141
+  gflops (eval):  947.723
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0352141,947.723,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58426.1
+  maximum absolute entry in einsum_ir solution: 58426.1
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0133179
+  time (eval):    0.0113042
+  gflops (eval):  2952.29
+  gflops (total): 1355.42
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0133179,0.0113042,2952.29,1355.42
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574786
+  gflops (total): 580.62
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.62
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313604
+  gflops (eval):  1064.18
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313604,1064.18,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57147
+  maximum absolute entry in einsum_ir solution: 57147
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013119
+  time (eval):    0.0110682
+  gflops (eval):  3015.22
+  gflops (total): 1379.79
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013119,0.0110682,3015.22,1379.79
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576935
+  gflops (total): 578.458
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,578.458
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0310857
+  gflops (eval):  1073.59
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0310857,1073.59,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56158.7
+  maximum absolute entry in einsum_ir solution: 56158.7
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132155
+  time (eval):    0.0112907
+  gflops (eval):  2955.82
+  gflops (total): 1361.83
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132155,0.0112907,2955.82,1361.83
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0574357
+  gflops (total): 581.054
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,581.054
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313017
+  gflops (eval):  1066.18
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313017,1066.18,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56952.7
+  maximum absolute entry in einsum_ir solution: 56952.7
+  maximum element-wise difference:              0.0341797
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131033
+  time (eval):    0.0113368
+  gflops (eval):  2943.79
+  gflops (total): 1365.51
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131033,0.0113368,2943.79,1365.51
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0569445
+  gflops (total): 586.066
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,586.066
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0310689
+  gflops (eval):  1074.17
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0310689,1074.17,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      61386.4
+  maximum absolute entry in einsum_ir solution: 61386.4
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132898
+  time (eval):    0.0111961
+  gflops (eval):  2980.78
+  gflops (total): 1362.96
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132898,0.0111961,2980.78,1362.96
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0573664
+  gflops (total): 581.756
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,581.756
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0307121
+  gflops (eval):  1086.65
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0307121,1086.65,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      59069.5
+  maximum absolute entry in einsum_ir solution: 59069.5
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132217
+  time (eval):    0.0111971
+  gflops (eval):  2980.52
+  gflops (total): 1366.7
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132217,0.0111971,2980.52,1366.7
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566589
+  gflops (total): 589.02
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,589.02
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.031778
+  gflops (eval):  1050.2
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.031778,1050.2,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56192.9
+  maximum absolute entry in einsum_ir solution: 56192.9
+  maximum element-wise difference:              0.0327148
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132652
+  time (eval):    0.0111868
+  gflops (eval):  2983.26
+  gflops (total): 1364.84
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132652,0.0111868,2983.26,1364.84
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0566115
+  gflops (total): 589.514
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,589.514
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317434
+  gflops (eval):  1051.35
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317434,1051.35,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57526.2
+  maximum absolute entry in einsum_ir solution: 57526.2
+  maximum element-wise difference:              0.0371094
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131161
+  time (eval):    0.0114218
+  gflops (eval):  2921.89
+  gflops (total): 1360.07
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131161,0.0114218,2921.89,1360.07
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575545
+  gflops (total): 579.854
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.854
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0308603
+  gflops (eval):  1081.43
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0308603,1081.43,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55942.4
+  maximum absolute entry in einsum_ir solution: 55942.4
+  maximum element-wise difference:              0.0292969
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131494
+  time (eval):    0.0109168
+  gflops (eval):  3057.06
+  gflops (total): 1386.73
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131494,0.0109168,3057.06,1386.73
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575183
+  gflops (total): 580.22
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,580.22
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0312502
+  gflops (eval):  1067.94
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0312502,1067.94,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54572.3
+  maximum absolute entry in einsum_ir solution: 54572.3
+  maximum element-wise difference:              0.0341797
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132373
+  time (eval):    0.0109845
+  gflops (eval):  3038.22
+  gflops (total): 1377.82
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132373,0.0109845,3038.22,1377.82
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0588098
+  gflops (total): 567.477
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,567.477
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0355483
+  gflops (eval):  938.813
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0355483,938.813,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58863.4
+  maximum absolute entry in einsum_ir solution: 58863.4
+  maximum element-wise difference:              0.0354004
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131607
+  time (eval):    0.0111769
+  gflops (eval):  2985.91
+  gflops (total): 1371.26
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131607,0.0111769,2985.91,1371.26
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.056995
+  gflops (total): 585.547
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,585.547
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0358943
+  gflops (eval):  929.764
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0358943,929.764,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57568.2
+  maximum absolute entry in einsum_ir solution: 57568.2
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0107579
+  time (eval):    0.0110412
+  gflops (eval):  3022.61
+  gflops (total): 1530.94
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0107579,0.0110412,3022.61,1530.94
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0586844
+  gflops (total): 568.69
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,568.69
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0363986
+  gflops (eval):  916.881
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0363986,916.881,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      58796.2
+  maximum absolute entry in einsum_ir solution: 58796.2
+  maximum element-wise difference:              0.0341797
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0131548
+  time (eval):    0.0112035
+  gflops (eval):  2978.82
+  gflops (total): 1370.09
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0131548,0.0112035,2978.82,1370.09
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0571675
+  gflops (total): 583.78
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,583.78
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0311562
+  gflops (eval):  1071.16
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0311562,1071.16,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      54778.8
+  maximum absolute entry in einsum_ir solution: 54778.8
+  maximum element-wise difference:              0.0332031
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132835
+  time (eval):    0.0113177
+  gflops (eval):  2948.77
+  gflops (total): 1356.57
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132835,0.0113177,2948.77,1356.57
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0576517
+  gflops (total): 578.876
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,578.876
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0313782
+  gflops (eval):  1063.58
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0313782,1063.58,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      57023.2
+  maximum absolute entry in einsum_ir solution: 57023.2
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0132008
+  time (eval):    0.0111311
+  gflops (eval):  2998.2
+  gflops (total): 1371.59
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0132008,0.0111311,2998.2,1371.59
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0575588
+  gflops (total): 579.811
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,579.811
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0317666
+  gflops (eval):  1050.58
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0317666,1050.58,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      56151.4
+  maximum absolute entry in einsum_ir solution: 56151.4
+  maximum element-wise difference:              0.03125
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.013309
+  time (eval):    0.0112017
+  gflops (eval):  2979.3
+  gflops (total): 1361.58
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.013309,0.0112017,2979.3,1361.58
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0573191
+  gflops (total): 582.236
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,582.236
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0309552
+  gflops (eval):  1078.11
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0309552,1078.11,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      55288.4
+  maximum absolute entry in einsum_ir solution: 55288.4
+  maximum element-wise difference:              0.0351562
+warning: einsum_ir solution is not close to at:einsum!
+parsed tensors:
+  a,i,b
+  b,j,c
+  c,k,d
+  d,l,e
+  e,m,a
+  i,j,k,l,m
+parsed contraction path: 0 1 0 1 0 1 0 1 
+parsed dimension ids:
+  a: 0
+  b: 1
+  c: 2
+  d: 3
+  e: 4
+  i: 5
+  j: 6
+  k: 7
+  l: 8
+  m: 9
+parsed dimension sizes:
+  a: 40
+  b: 40
+  c: 40
+  d: 40
+  e: 40
+  i: 25
+  j: 25
+  k: 25
+  l: 25
+  m: 25
+ctype: REAL_ONLY
+dtype: FP32
+store and lock: 0
+print_tree: 1
+assembled einsum_ir data structures
+  string_num_dims: 3 3 3 3 3 5 
+  string_dim_ids: 0 5 1 1 6 2 2 7 3 3 8 4 4 9 0 5 6 7 8 9 
+
+*** benchmarking einsum_ir ***
+[[[4,9,0]->[0,4,9]],[[[0,5,1]->[5,1,0]],[[1,6,2]->[6,2,1]]->[5,6,2,0]]->[5,6,2,4,9]],[[[3,8,4]->[8,3,4]],[2,7,3]->[2,7,8,4]]->[5,6,7,8,9]
+  #flops:         33373234375
+  time (compile): 0.0130471
+  time (eval):    0.0111881
+  gflops (eval):  2982.92
+  gflops (total): 1377.06
+CSV_DATA: einsum_ir,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0.0130471,0.0111881,2982.92,1377.06
+
+*** benchmarking at::einsum ***
+  #flops:         33373234375
+  time (total):   0.0568165
+  gflops (total): 587.386
+CSV_DATA: at::einsum,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0,0,587.386
+
+*** benchmarking at::matmul ***
+  C M N K for the binary contractions:
+    #0: 1 1000 1000 40
+    #1: 1 1000 1000 40
+    #2: 1 1000 25000 40
+    #3: 1 15625 625 1600
+  #flops:         33373234375
+  time (eval):    0.0354264
+  gflops (eval):  942.043
+CSV_DATA: at::matmul,"aib,bjc,ckd,dle,ema->ijklm","40,40,40,40,40,25,25,25,25,25","(0,1),(0,1),(0,1),(0,1)",33373234375,0,0.0354264,942.043,0
+
+*** comparing solution ***:
+  maximum absolute entry in ATen solution:      53104.9
+  maximum absolute entry in einsum_ir solution: 53104.9
+  maximum element-wise difference:              0.0390625
+warning: einsum_ir solution is not close to at:einsum!
